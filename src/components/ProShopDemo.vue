@@ -23,7 +23,7 @@ export default {
       let value = this.$refs.inputValue.value;
       console.log(`value`, value);
       axios.get("http://localhost:8686/send", {
-        params: { value: value }
+        params: { _val: value }
       });
     },
     getValue() {
