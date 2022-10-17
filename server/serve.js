@@ -11,32 +11,35 @@ let val2 = {
     {
       id: 1,
       name: "kobe",
-      age: 24
+      age: "24"
     },
     {
       id: 2,
       name: "james",
-      age: 22
+      age: "22"
     },
     {
       id: 3,
       name: "curry",
-      age: 18
+      age: "18"
     }
   ]
 };
 var filterRes = null;
+console.log(`val2`, val2.data[0].age);
 //过滤方法
-function filter(value) {
+function filter(_val) {
   return val2.data.filter(item => {
-    return item.age === value;
+    return item.age === _val;
   });
 }
 
 //创建测试接口
 app.get("/send", function(req, res) {
+  //query后面的参数必须与前端params所传递的参数名一致
   console.log(req.query._val);
   let result = filter(req.query._val);
+  console.log(`result`, result);
   filterRes =
     result.length !== 0 ? result : [{ id: "未知", name: "未找到数据" }];
   res.end();
