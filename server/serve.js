@@ -35,6 +35,8 @@ function filter(_val) {
 }
 
 //创建测试接口
+
+//发送
 app.get("/send", function(req, res) {
   //query后面的参数必须与前端params所传递的参数名一致
   console.log(req.query._val);
@@ -44,9 +46,21 @@ app.get("/send", function(req, res) {
     result.length !== 0 ? result : [{ id: "未知", name: "未找到数据" }];
   res.end();
 });
-
+//获取
 app.get("/get", function(req, res) {
   res.send(filterRes);
+});
+//提交注册信息
+app.post("/reg", function(req, res) {
+  let data = "";
+  //获取数据时候的回调
+  req.on("data", function(res) {
+    data += res;
+  });
+  // 数据接收完毕的回调
+  req.on("end", function() {
+    console.log(`data`, data);
+  });
 });
 
 app.listen(8686, function() {
