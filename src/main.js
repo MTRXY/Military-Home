@@ -4,11 +4,12 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router";
 
-import { Button, Field, NavBar } from "vant";
+import { Button, Field, NavBar, Dialog } from "vant";
 
 Vue.use(Button)
   .use(NavBar)
-  .use(Field);
+  .use(Field)
+  .use(Dialog);
 
 new Vue({
   el: "#app",

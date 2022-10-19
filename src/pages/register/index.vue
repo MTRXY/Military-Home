@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <van-nav-bar :title="msg" left-text="返回" right-text="按钮" left-arrow @click-left="goBack" />
+    <van-nav-bar :title="msg" left-text="返回" right-text left-arrow @click-left="goBack" />
     <van-field
       v-model="username"
       required
@@ -39,6 +39,7 @@
 import axios from "axios";
 import { postRegInfo } from "../../../apiserveconfig";
 export default {
+  name: "userRegister",
   data() {
     return {
       msg: "注册",
@@ -74,16 +75,23 @@ export default {
       // 注册输入数据的简单验证
       if (regInfo.username === "") {
         this.userErr = "用户名不能为空";
+        return;
       }
       if (regInfo.password === "") {
         this.passErr = "密码不能为空";
+        return;
       }
       if (regInfo.repPassword === "") {
         this.repPassErr = "密码确认不能为空";
+        return;
       }
       if (regInfo.repPassword !== regInfo.password) {
         this.passErr = "密码输入不一致";
         this.repPassErr = "密码输入不一致";
+        return;
+      } else {
+        this.passErr = "";
+        this.repPassErr = "";
       }
       this.postRegInfo(regInfo);
       console.log(`regInfo`, regInfo);
@@ -99,6 +107,19 @@ export default {
     postRegInfo(regInfo) {
       axios.post(postRegInfo, regInfo).then(res => {
         console.log(`res.data`, res.data);
+        //弹出成功提示
+        this.$dialog
+          .alert({
+            message: res.data.regInfo
+          })
+          //提示后点击确认，跳转至首页
+          .then(() => {
+            if (res.data.reg_code == 1) {
+              this.$router.push({ path: "/" });
+            } else {
+              return;
+            }
+          });
       });
     }
   },

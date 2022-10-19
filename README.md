@@ -63,3 +63,33 @@ npm i babel-plugin-import -save-dev
 注册页面简单验证
 
 创建注册信息提交接口，将数据传入中间件
+# 2022.10.19
+
+开启mongodb服务
+
+show dbs //展示数据库
+
+use “数据库名”//新建数据库
+
+db.createCollection("表名") //创建数据库中的表
+
+show collections //展示数据表
+
+db.表名.find() //查找表中的数据
+
+db.inventory.deleteMany/One({属性条件})//删除多条数据或单条数据
+db.inventory.deleteMany({})//删除表单下的全部数据
+
+npm安装mongodb
+
+server中引入mongodb模块
+
+mongodb连接端口 //一定要按官方文档来写，否则容易出错！！！
+
+存储注册信息
+
+注册后提示注册成功（vant Dialog实现）
+
+构建登录页面
+
+解决数据库中注册重名的问题

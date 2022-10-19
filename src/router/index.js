@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import ProShopDemo from "@/components/ProShopDemo";
+import welcome from "@/pages/welcome/welcome";
 import register from "@/pages/register";
 import login from "@/pages/login";
 
@@ -10,8 +10,8 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "ProShopDemo",
-      component: ProShopDemo
+      name: "welcome",
+      component: welcome
     },
     {
       path: "/register",
