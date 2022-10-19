@@ -37,7 +37,7 @@
 
 <script>
 import axios from "axios";
-import apiList from "../../../apiserveconfig";
+import { postRegInfo } from "../../../apiserveconfig";
 export default {
   data() {
     return {
@@ -97,7 +97,7 @@ export default {
     },
     //提交注册信息
     postRegInfo(regInfo) {
-      axios.post(apiList.postRegInfo, regInfo).then(res => {
+      axios.post(postRegInfo, regInfo).then(res => {
         console.log(`res.data`, res.data);
       });
     }
